@@ -26,8 +26,26 @@ public class OrderService {
         return modelMapper.map(orderList,new TypeToken<List<OrderDto>>(){}.getType());
     }
 
+    public OrderDto getOrderById(Integer orderId){
+        OrderModel order = orderRepo.orderfindbyId(orderId);
+        return modelMapper.map(order, OrderDto.class);
+    }
+
     public OrderDto saveOrder(OrderDto dto){
         orderRepo.save(modelMapper.map(dto, OrderModel.class));
         return dto;
     }
+
+    public OrderDto updateOrder(OrderDto dto){
+        orderRepo.save(modelMapper.map(dto, OrderModel.class));
+        return dto;
+    }
+
+
+    public String deleteOrder(Integer orderId) {
+        orderRepo.deleteById(orderId);
+        return "order deleted";
+    }
+
+
 }

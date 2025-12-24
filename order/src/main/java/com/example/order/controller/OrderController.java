@@ -20,8 +20,23 @@ public class OrderController {
         return orderService.getAllOrders();
     }
 
+    @GetMapping(value ="/order/{orderId}")
+    public OrderDto getOrderById(@PathVariable Integer orderId){
+        return orderService.getOrderById(orderId);
+    }
+
     @PostMapping(value = "/saveOrder")
     public OrderDto saveOrder(@RequestBody OrderDto dto){
         return orderService.saveOrder(dto);
+    }
+
+    @PutMapping(value = "/updateOrder")
+    public OrderDto updateItems(@RequestBody OrderDto dto){
+        return orderService.updateOrder(dto);
+    }
+
+    @DeleteMapping("/deleteorder/{orderId}")
+    public String deleteOrder(@PathVariable Integer orderId) {
+        return orderService.deleteOrder(orderId);
     }
 }
